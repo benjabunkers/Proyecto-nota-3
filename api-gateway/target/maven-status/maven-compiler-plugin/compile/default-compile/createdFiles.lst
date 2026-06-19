@@ -1,0 +1,2 @@
+com\duoc\api_gateway\ApiGatewayApplication.class
+com\duoc\api_gateway\filter\RequestIdGlobalFilter.class

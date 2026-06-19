@@ -1,0 +1,101 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 3000
+        response-timeout: 10s
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - AddResponseHeader=X-Gateway, api-gateway
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+            exposed-headers:
+              - X-Request-Id
+              - Location
+      routes:
+        - id: ms-clientes
+          uri: lb://ms-clientes
+          predicates:
+            - Path=/api/v1/clientes,/api/v1/clientes/**,/api/v1/direcciones,/api/v1/direcciones/**
+        - id: ms-vehiculos
+          uri: lb://ms-vehiculos
+          predicates:
+            - Path=/api/v1/vehiculos,/api/v1/vehiculos/**,/api/v1/categorias,/api/v1/categorias/**
+        - id: ms-reservas
+          uri: lb://ms-reservas
+          predicates:
+            - Path=/api/v1/reservas,/api/v1/reservas/**,/api/v1/estados-reserva,/api/v1/estados-reserva/**
+        - id: docs-clientes
+          uri: lb://ms-clientes
+          predicates:
+            - Path=/docs/clientes
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-vehiculos
+          uri: lb://ms-vehiculos
+          predicates:
+            - Path=/docs/vehiculos
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-reservas
+          uri: lb://ms-reservas
+          predicates:
+            - Path=/docs/reservas
+          filters:
+            - SetPath=/v3/api-docs
+
+server:
+  port: ${SERVER_PORT:8080}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    path: /doc/swagger-ui.html
+    urls:
+      - name: Clientes
+        url: /docs/clientes
+      - name: Vehiculos
+        url: /docs/vehiculos
+      - name: Reservas
+        url: /docs/reservas
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      access: read-only
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: API Gateway
+    description: Entrada central para clientes, vehiculos y reservas

@@ -1,0 +1,16 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
+
+springdoc:
+  swagger-ui:
+    enabled: false
+
+management:
+  endpoints:
+    enabled-by-default: false
