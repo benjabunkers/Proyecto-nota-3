@@ -161,6 +161,4 @@ Error UnsupportedClassVersionError
 
 El comando java está utilizando una versión antigua. Configurar el IDE, Maven y PATH con Java 17 o superior.
 
-Reservas no inicia
-
 Comprobar que MySQL esté activo, que exista prueba2 y que las migraciones Flyway no estén marcadas como fallidas.
