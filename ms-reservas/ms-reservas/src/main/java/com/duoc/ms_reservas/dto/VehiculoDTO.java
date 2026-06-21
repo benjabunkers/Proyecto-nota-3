@@ -12,16 +12,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class VehiculoDTO {
 
-
-    //cambiar porque todavia no esta listo vehiculo
     private Integer id;
+    private String nombre;
     private String patente;
     private String marca;
     private String modelo;
     private Integer anio;
+    private String color;
     private BigDecimal precioArriendoDiario;
+    private Integer kilometraje;
     private Boolean disponible;
-    private Boolean activo;
-    private LocalDate fechaRegistro;
-
+    private LocalDate fechaIngreso;
+    private Integer categoriaId;
+    private String categoriaNombre;
 }

@@ -25,10 +25,14 @@ public class Reserva {
     private Integer clienteId;
     @Column(nullable = false)
     private String nombreCliente;
+    @Column(nullable = false)
+    private String correoCliente;
 
     // agregado: id del vehículo que viene desde ms-vehiculos
     @Column(nullable = false)
     private Integer vehiculoId;
+    @Column(nullable = false)
+    private String nombreVehiculo;
 
     // agregado: fecha en que comienza la reserva
     @Column(nullable = false)

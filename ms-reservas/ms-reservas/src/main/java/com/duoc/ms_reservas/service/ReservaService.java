@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 @RequiredArgsConstructor
 public class ReservaService {
@@ -65,6 +66,7 @@ public class ReservaService {
         }
     }
 
+    // Valida cliente, vehiculo, disponibilidad y estado antes de crear la reserva.
     public ReservaDTO save(ReservaRequestDTO requestDTO) {
         try {
             // agregado: log para crear reserva
@@ -73,7 +75,9 @@ public class ReservaService {
             // agregado: verifica que el cliente exista en ms-clientes
             ClienteDTO cliente = clienteClient.obtenerClientePorId(requestDTO.getClienteId());
 
-            if (cliente == null || cliente.getId() == null) {
+            if (cliente == null || cliente.getId() == null
+                    || cliente.getNombre() == null || cliente.getNombre().isBlank()
+                    || cliente.getEmail() == null || cliente.getEmail().isBlank()) {
                 throw new ResourceNotFoundException(
                         "Cliente no encontrado con id: " + requestDTO.getClienteId()
                 );
@@ -82,7 +86,8 @@ public class ReservaService {
             // agregado: verifica que el vehículo exista en ms-vehiculos
             VehiculoDTO vehiculo = vehiculoClient.obtenerVehiculoPorId(requestDTO.getVehiculoId());
 
-            if (vehiculo == null || vehiculo.getId() == null) {
+            if (vehiculo == null || vehiculo.getId() == null
+                    || vehiculo.getNombre() == null || vehiculo.getNombre().isBlank()) {
                 throw new ResourceNotFoundException(
                         "Vehículo no encontrado con id: " + requestDTO.getVehiculoId()
                 );
@@ -100,6 +105,8 @@ public class ReservaService {
 
             Reserva reserva = reservaMapper.toEntity(requestDTO, estadoReserva);
             reserva.setNombreCliente(cliente.getNombre());
+            reserva.setCorreoCliente(cliente.getEmail());
+            reserva.setNombreVehiculo(vehiculo.getNombre());
             Reserva reservaGuardada = reservaRepository.save(reserva);
 
             return reservaMapper.toDTO(reservaGuardada);
@@ -110,6 +117,7 @@ public class ReservaService {
         }
     }
 
+    // Revalida los recursos locales y remotos antes de actualizar la reserva.
     public ReservaDTO update(Integer id, ReservaRequestDTO requestDTO) {
         try {
             // agregado: actualización campo por campo para PUT
@@ -123,7 +131,9 @@ public class ReservaService {
             // agregado: verifica que el cliente exista en ms-clientes
             ClienteDTO cliente = clienteClient.obtenerClientePorId(requestDTO.getClienteId());
 
-            if (cliente == null || cliente.getId() == null) {
+            if (cliente == null || cliente.getId() == null
+                    || cliente.getNombre() == null || cliente.getNombre().isBlank()
+                    || cliente.getEmail() == null || cliente.getEmail().isBlank()) {
                 throw new ResourceNotFoundException(
                         "Cliente no encontrado con id: " + requestDTO.getClienteId()
                 );
@@ -132,7 +142,8 @@ public class ReservaService {
             // agregado: verifica que el vehículo exista en ms-vehiculos
             VehiculoDTO vehiculo = vehiculoClient.obtenerVehiculoPorId(requestDTO.getVehiculoId());
 
-            if (vehiculo == null || vehiculo.getId() == null) {
+            if (vehiculo == null || vehiculo.getId() == null
+                    || vehiculo.getNombre() == null || vehiculo.getNombre().isBlank()) {
                 throw new ResourceNotFoundException(
                         "Vehículo no encontrado con id: " + requestDTO.getVehiculoId()
                 );
@@ -145,6 +156,8 @@ public class ReservaService {
 
             reservaMapper.updateEntity(reserva, requestDTO, estadoReserva);
             reserva.setNombreCliente(cliente.getNombre());
+            reserva.setCorreoCliente(cliente.getEmail());
+            reserva.setNombreVehiculo(vehiculo.getNombre());
 
             Reserva reservaActualizada = reservaRepository.save(reserva);
 
@@ -174,6 +187,7 @@ public class ReservaService {
         }
     }
 
+    // Consulta las reservas cuya fecha de inicio es igual o posterior a la indicada.
     public List<ReservaDTO> findByFechaInicioDesde(LocalDate fecha) {
         try {
             // agregado: JPQL solicitado en la pauta

@@ -19,6 +19,9 @@ public class VehiculoDTO {
     @Schema(description = "ID unico del vehiculo", example = "1")
     private Integer id;
 
+    @Schema(description = "Nombre descriptivo compuesto por marca y modelo", example = "Toyota Corolla")
+    private String nombre;
+
     @Schema(description = "Patente del vehiculo", example = "ABCD12")
     private String patente;
 

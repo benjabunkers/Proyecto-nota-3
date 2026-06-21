@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.Locale;
 
+// Usa DataFaker para generar datos de prueba realistas al iniciar la aplicacion.
+// Solo se activa en perfiles dev/test y cuando app.data-faker.enabled=true.
 @Component
 @Profile({"dev", "test"})
 @ConditionalOnProperty(name = "app.data-faker.enabled", havingValue = "true")
@@ -29,6 +31,7 @@ public class FakerDataLoader implements CommandLineRunner {
     @Value("${app.data-faker.records:10}")
     private int targetRecords;
 
+    // Completa la base hasta el total configurado sin duplicar registros en cada inicio.
     @Override
     public void run(String... args) {
         Faker faker = new Faker(new Locale("es"));

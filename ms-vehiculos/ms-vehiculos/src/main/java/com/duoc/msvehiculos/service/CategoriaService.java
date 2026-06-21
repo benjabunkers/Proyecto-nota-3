@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -42,6 +43,7 @@ public class CategoriaService {
         return CategoriaMapper.toDTO(categoria);
     }
 
+    // Convierte la solicitud y registra una nueva categoria.
     public CategoriaDTO save(CategoriaRequestDTO dto) {
         log.info("Guardando nueva categoría: {}", dto.getNombre());
 
@@ -56,6 +58,7 @@ public class CategoriaService {
         }
     }
 
+    // Verifica que la categoria exista antes de modificarla.
     public CategoriaDTO update(Integer id, CategoriaRequestDTO dto) {
         log.info("Actualizando categoría con id: {}", id);
 

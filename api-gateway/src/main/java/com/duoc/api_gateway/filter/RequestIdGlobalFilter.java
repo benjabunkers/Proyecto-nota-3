@@ -11,11 +11,13 @@ import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
+// Agrega un identificador unico a cada peticion para rastrearla entre microservicios.
 @Component
 public class RequestIdGlobalFilter implements GlobalFilter, Ordered {
 
     public static final String REQUEST_ID_HEADER = "X-Request-Id";
 
+    // Reutiliza el X-Request-Id recibido o genera uno antes de continuar la cadena.
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String incomingRequestId = exchange.getRequest().getHeaders().getFirst(REQUEST_ID_HEADER);
@@ -31,6 +33,7 @@ public class RequestIdGlobalFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange.mutate().request(request).build());
     }
 
+    // Prioridad alta para identificar la peticion antes que otros filtros.
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;

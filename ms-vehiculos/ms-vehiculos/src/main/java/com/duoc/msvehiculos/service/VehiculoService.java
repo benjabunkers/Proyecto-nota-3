@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -51,6 +52,7 @@ public class VehiculoService {
         }
     }
 
+    // Valida la categoria, transforma el DTO y guarda el nuevo vehiculo.
     public VehiculoDTO save(VehiculoRequestDTO dto) {
         log.info("Guardando nuevo vehiculo con patente: {}", dto.getPatente());
 
@@ -68,6 +70,7 @@ public class VehiculoService {
         }
     }
 
+    // Comprueba vehiculo y categoria antes de aplicar y persistir los cambios.
     public VehiculoDTO update(Integer id, VehiculoRequestDTO dto) {
         log.info("Actualizando vehiculo con id: {}", id);
 
@@ -105,6 +108,7 @@ public class VehiculoService {
     }
 
     // agregado: metodo para la query requerida por la prueba
+    // Ejecuta la consulta de vehiculos disponibles bajo el precio indicado.
     public List<VehiculoDTO> buscarDisponiblesPorPrecioMenor(BigDecimal precioMaximo) {
         log.info("Buscando vehiculos disponibles con precio menor a: {}", precioMaximo);
 

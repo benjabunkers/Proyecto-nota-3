@@ -15,7 +15,9 @@ public class ReservaMapper {
         dto.setId(reserva.getId());
         dto.setClienteId(reserva.getClienteId());
         dto.setNombreCliente(reserva.getNombreCliente());
+        dto.setCorreoCliente(reserva.getCorreoCliente());
         dto.setVehiculoId(reserva.getVehiculoId());
+        dto.setNombreVehiculo(reserva.getNombreVehiculo());
         dto.setFechaInicio(reserva.getFechaInicio());
         dto.setFechaFin(reserva.getFechaFin());
         dto.setCantidadDias(reserva.getCantidadDias());

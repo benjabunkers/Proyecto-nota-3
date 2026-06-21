@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 @RequiredArgsConstructor
 public class EstadoReservaService {
@@ -55,6 +56,7 @@ public class EstadoReservaService {
         }
     }
 
+    // Crea y persiste un nuevo estado permitido para las reservas.
     public EstadoReservaDTO save(EstadoReservaRequestDTO requestDTO) {
         try {
             // agregado: log para crear estado de reserva
@@ -71,6 +73,7 @@ public class EstadoReservaService {
         }
     }
 
+    // Verifica el estado y aplica los cambios recibidos.
     public EstadoReservaDTO update(Integer id, EstadoReservaRequestDTO requestDTO) {
         try {
             // agregado: actualización campo por campo para PUT

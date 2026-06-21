@@ -23,8 +23,14 @@ public class ReservaDTO {
     @Schema(description = "Nombre del cliente obtenido mediante ms-clientes", example = "Juan")
     private String nombreCliente;
 
+    @Schema(description = "Correo del cliente obtenido mediante ms-clientes", example = "juan@ejemplo.com")
+    private String correoCliente;
+
     @Schema(description = "ID del vehiculo validado mediante ms-vehiculos", example = "1")
     private Integer vehiculoId;
+
+    @Schema(description = "Nombre del vehiculo obtenido mediante ms-vehiculos", example = "Toyota Corolla")
+    private String nombreVehiculo;
 
     @Schema(description = "Fecha de inicio de la reserva", example = "2026-06-20")
     private LocalDate fechaInicio;

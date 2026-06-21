@@ -14,6 +14,7 @@ public class VehiculoMapper {
 
         return VehiculoDTO.builder()
                 .id(vehiculo.getId())
+                .nombre((vehiculo.getMarca() + " " + vehiculo.getModelo()).trim())
                 .patente(vehiculo.getPatente())
                 .marca(vehiculo.getMarca())
                 .modelo(vehiculo.getModelo())

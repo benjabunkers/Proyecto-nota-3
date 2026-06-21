@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -47,6 +48,7 @@ public class ClienteService {
         }
     }
 
+    // Convierte la solicitud y registra un nuevo cliente.
     public ClienteDTO save(ClienteRequestDTO request){
         log.info("Guardando nuevo cliente");
 
@@ -62,6 +64,7 @@ public class ClienteService {
 
     }
 
+    // Verifica que el cliente exista antes de aplicar los cambios.
     public ClienteDTO update(Integer id, ClienteRequestDTO request){
         log.info("Actualizando cliente con id: {}", id);
 
@@ -100,6 +103,7 @@ public class ClienteService {
         }
     }
 
+    // Busca coincidencias parciales de correo sin distinguir mayusculas.
     public List<ClienteDTO> buscarPorEmail(String texto){
         log.info("Buscando clientes cuyo email contenga: {}", texto);
 

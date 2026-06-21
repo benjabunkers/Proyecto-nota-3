@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
@@ -53,8 +54,10 @@ class ReservaServiceTest {
         ClienteDTO cliente = new ClienteDTO();
         cliente.setId(1);
         cliente.setNombre("Juan");
+        cliente.setEmail("juan@ejemplo.com");
         VehiculoDTO vehiculo = new VehiculoDTO();
         vehiculo.setId(1);
+        vehiculo.setNombre("Toyota Corolla");
         vehiculo.setDisponible(true);
         EstadoReserva estado = new EstadoReserva();
         estado.setId(1);
@@ -71,6 +74,9 @@ class ReservaServiceTest {
         ReservaDTO resultado = reservaService.save(request);
 
         assertSame(esperado, resultado);
+        assertEquals("Juan", entidad.getNombreCliente());
+        assertEquals("juan@ejemplo.com", entidad.getCorreoCliente());
+        assertEquals("Toyota Corolla", entidad.getNombreVehiculo());
         verify(clienteClient).obtenerClientePorId(1);
         verify(vehiculoClient).obtenerVehiculoPorId(1);
         verify(reservaRepository).save(entidad);
@@ -81,8 +87,11 @@ class ReservaServiceTest {
         ReservaRequestDTO request = crearRequest();
         ClienteDTO cliente = new ClienteDTO();
         cliente.setId(1);
+        cliente.setNombre("Juan");
+        cliente.setEmail("juan@ejemplo.com");
         VehiculoDTO vehiculo = new VehiculoDTO();
         vehiculo.setId(1);
+        vehiculo.setNombre("Toyota Corolla");
         vehiculo.setDisponible(false);
 
         when(clienteClient.obtenerClientePorId(1)).thenReturn(cliente);

@@ -16,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+// Contiene las reglas de negocio y coordina repositorios, mapeos y validaciones.
 @Service
 public class DireccionService {
 
@@ -41,6 +42,7 @@ public class DireccionService {
         return direccionMapper.toDTO(direccion);
     }
 
+    // Valida el cliente asociado antes de guardar la direccion.
     public DireccionDTO save(DireccionRequestDTO request){
         log.info("Guardando nueva direccion para cliente id: {}", request.getClienteId());
 
@@ -53,6 +55,7 @@ public class DireccionService {
         return direccionMapper.toDTO(direccionGuardada);
     }
 
+    // Actualiza la direccion y comprueba la nueva relacion con el cliente.
     public DireccionDTO update(Integer id, DireccionRequestDTO request){
         log.info("Actualizar direcion con id: {}", id);
 
