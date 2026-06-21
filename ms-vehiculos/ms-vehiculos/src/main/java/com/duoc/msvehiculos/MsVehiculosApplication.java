@@ -10,5 +10,6 @@ public class MsVehiculosApplication {
 		SpringApplication.run(MsVehiculosApplication.class, args);
 	}
 
+	//VEHICULOS
 }
 
