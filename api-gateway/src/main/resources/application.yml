@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   application:
     name: api-gateway
   cloud:
@@ -38,6 +38,22 @@ spring:
           uri: lb://ms-reservas
           predicates:
             - Path=/api/v1/reservas,/api/v1/reservas/**,/api/v1/estados-reserva,/api/v1/estados-reserva/**,/api/v2/reservas,/api/v2/reservas/**,/api/v2/estados-reserva,/api/v2/estados-reserva/**
+        - id: ms-pagos
+          uri: lb://ms-pagos
+          predicates:
+            - Path=/api/v1/pagos,/api/v1/pagos/**,/api/v2/pagos,/api/v2/pagos/**
+        - id: ms-reportes
+          uri: lb://ms-reportes
+          predicates:
+            - Path=/api/v1/reportes,/api/v1/reportes/**,/api/v2/reportes,/api/v2/reportes/**
+        - id: ms-empleados
+          uri: lb://ms-empleados
+          predicates:
+            - Path=/api/v1/empleados,/api/v1/empleados/**,/api/v1/activos,/api/v1/activos/**,/api/v2/empleados,/api/v2/empleados/**,/api/v2/activos,/api/v2/activos/**
+        - id: ms-sucursales
+          uri: lb://ms-sucursales
+          predicates:
+            - Path=/api/v1/sucursales,/api/v1/sucursales/**,/api/v1/regiones,/api/v1/regiones/**,/api/v2/sucursales,/api/v2/sucursales/**,/api/v2/regiones,/api/v2/regiones/**
         - id: docs-clientes
           uri: lb://ms-clientes
           predicates:
@@ -54,6 +70,30 @@ spring:
           uri: lb://ms-reservas
           predicates:
             - Path=/docs/reservas
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-pagos
+          uri: lb://ms-pagos
+          predicates:
+            - Path=/docs/pagos
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-reportes
+          uri: lb://ms-reportes
+          predicates:
+            - Path=/docs/reportes
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-empleados
+          uri: lb://ms-empleados
+          predicates:
+            - Path=/docs/empleados
+          filters:
+            - SetPath=/v3/api-docs
+        - id: docs-sucursales
+          uri: lb://ms-sucursales
+          predicates:
+            - Path=/docs/sucursales
           filters:
             - SetPath=/v3/api-docs
 
@@ -82,6 +122,14 @@ springdoc:
         url: /docs/vehiculos
       - name: Reservas
         url: /docs/reservas
+      - name: Pagos
+        url: /docs/pagos
+      - name: Reportes
+        url: /docs/reportes
+      - name: Empleados
+        url: /docs/empleados
+      - name: Sucursales
+        url: /docs/sucursales
 
 management:
   endpoints:
@@ -98,4 +146,6 @@ management:
 info:
   app:
     name: API Gateway
-    description: Entrada central para clientes, vehiculos y reservas
+    description: Entrada central para los microservicios del sistema de arriendo de vehiculos
+
+
