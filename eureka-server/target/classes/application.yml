@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   application:
     name: eureka-server
 
@@ -29,3 +29,10 @@ info:
   app:
     name: Eureka Server
     description: Registro y descubrimiento de microservicios
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html

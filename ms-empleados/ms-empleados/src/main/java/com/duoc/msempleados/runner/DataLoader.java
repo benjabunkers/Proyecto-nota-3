@@ -25,20 +25,20 @@ public class DataLoader implements CommandLineRunner {
             log.info("Cargando datos iniciales de empleados"); // agregado: log del runner
 
             Empleado empleado1 = new Empleado();
-            empleado1.setRut("12345678-9");
+            empleado1.setRut("12345678-k");
             empleado1.setNombre("Carlos Perez");
             empleado1.setCargo("Ejecutivo de arriendo");
             empleado1.setEmail("carlos.perez@empresa.cl");
-            empleado1.setSueldo(new BigDecimal("750000"));
+            empleado1.setSueldo(new BigDecimal("800000"));
             empleado1.setActivo(true);
             empleado1.setFechaIngreso(LocalDate.of(2024, 3, 10));
 
             Empleado empleado2 = new Empleado();
             empleado2.setRut("18765432-1");
-            empleado2.setNombre("Maria Gonzalez");
+            empleado2.setNombre("Amy Gonzalez");
             empleado2.setCargo("Administradora de sucursal");
             empleado2.setEmail("maria.gonzalez@empresa.cl");
-            empleado2.setSueldo(new BigDecimal("950000"));
+            empleado2.setSueldo(new BigDecimal("960000"));
             empleado2.setActivo(true);
             empleado2.setFechaIngreso(LocalDate.of(2024, 6, 15));
 
