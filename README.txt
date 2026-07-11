@@ -84,43 +84,6 @@ Rutas de los modulos
 8. ms-reportes\ms-reportes
 9. api-gateway
 
-Ejemplo de arranque por terminal
-
-Terminal 1:
-cd eureka-server
-.\mvnw.cmd spring-boot:run
-
-Terminal 2:
-cd ms-clientes\ms-clientes
-.\mvnw.cmd spring-boot:run
-
-Terminal 3:
-cd ms-vehiculos\ms-vehiculos
-.\mvnw.cmd spring-boot:run
-
-Terminal 4:
-cd ms-sucursales\ms-sucursales
-.\mvnw.cmd spring-boot:run
-
-Terminal 5:
-cd ms-empleados\ms-empleados
-.\mvnw.cmd spring-boot:run
-
-Terminal 6:
-cd ms-reservas\ms-reservas
-.\mvnw.cmd spring-boot:run
-
-Terminal 7:
-cd ms-pagos\ms-pagos
-.\mvnw.cmd spring-boot:run
-
-Terminal 8:
-cd ms-reportes\ms-reportes
-.\mvnw.cmd spring-boot:run
-
-Terminal 9:
-cd api-gateway
-.\mvnw.cmd spring-boot:run
 
 URLs principales
 
