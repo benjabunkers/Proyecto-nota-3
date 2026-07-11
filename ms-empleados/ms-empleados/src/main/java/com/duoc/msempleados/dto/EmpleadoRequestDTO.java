@@ -1,13 +1,21 @@
 package com.duoc.msempleados.dto;
 
-import jakarta.annotation.Nullable;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Schema(description = "datos de empleados")
 public class EmpleadoRequestDTO {
 
     @NotBlank(message = "El RUT es obligatorio")
